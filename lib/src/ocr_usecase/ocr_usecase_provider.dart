@@ -12,9 +12,12 @@ import '../documents_features/nova/get_nova_bounding_box_map_usecase.dart';
 import '../documents_features/nova/nova_document_from_json_mapper.dart';
 import 'ocr_usecase.dart';
 
-OcrUsecase provideOcrUsecase() {
+OcrUsecase provideOcrUsecase((double, double) pageSize) {
   return FindBoundingBoxesUsecase(
     findDocumentFormatUsecase: const FindDocumentFormatUsecase(),
+    preprocessDocumentUsecase: PreprocessOcrUsecase(
+      getTargetBoxesUsecase: GetTargetBoxesUsecase(pageSize),
+    ),
     getBoundingBoxMapsUsecase: GetDocumentBoundingBoxMapUsecase(
       getDeiBoundingBoxMapUsecase: GetDeiBoundingBoxMapUsecase(),
       getEydapBoundingBoxMapUsecase: GetEydapBoundingBoxMapUsecase(),
