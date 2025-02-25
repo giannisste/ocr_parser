@@ -1,5 +1,5 @@
 import '../../google_vision_ocr_features/ocr_paragraph/ocr_paragraph.dart';
-import '../../mappers/mapper.dart';
+import '../../core/mappers/mapper.dart';
 import 'bounding_box_map.dart';
 
 class BoundingBoxToWordMapper implements Mapper<BoundingBoxMap, Map<String, OcrParagraph?>> {

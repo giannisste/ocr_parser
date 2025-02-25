@@ -1,8 +1,8 @@
 import 'dart:convert';
 import 'dart:io' show File;
 
-import '../../core_types/usecases/usecase.dart';
-import '../../mappers/mapper.dart';
+import '../../core/core_types/usecases/usecase.dart';
+import '../../core/mappers/mapper.dart';
 import '../google_vision_ocr_data/google_vision_ocr_data.dart';
 import '../google_vision_ocr_response/google_vision_ocr_response.dart';
 

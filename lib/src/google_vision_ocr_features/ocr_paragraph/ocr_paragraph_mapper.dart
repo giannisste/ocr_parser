@@ -1,4 +1,4 @@
-import '../../mappers/mapper.dart';
+import '../../core/mappers/mapper.dart';
 import '../ocr_bounding_box/ocr_bounding_box.dart';
 import '../ocr_word/ocr_word.dart';
 import 'ocr_paragraph.dart';

@@ -1,4 +1,4 @@
-import '../../mappers/mapper.dart';
+import '../../core/mappers/mapper.dart';
 import 'language_confidence.dart';
 
 class LanguageConfidenceMapper implements Mapper<Map<String, dynamic>, LanguageConfidence> {

@@ -1,0 +1,3 @@
+class GenericDocument {
+  const GenericDocument();
+}

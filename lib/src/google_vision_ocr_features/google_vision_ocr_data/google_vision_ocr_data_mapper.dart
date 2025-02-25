@@ -1,4 +1,4 @@
-import '../../mappers/mapper.dart';
+import '../../core/mappers/mapper.dart';
 import '../ocr_document/ocr_document.dart';
 import 'google_vision_ocr_data.dart';
 

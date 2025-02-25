@@ -1,7 +1,6 @@
-import 'package:ocr_parser/src/bounding_box_method_features/bounding_box_map/bounding_box_map.dart';
-import 'package:ocr_parser/src/core_types/predicates/predicate.dart';
-
-import '../../core_types/core_2d/point/point.dart';
+import '../../bounding_box_method_features/bounding_box_map/bounding_box_map.dart';
+import '../../core/core_types/core_2d/point/point.dart';
+import '../../core/core_types/predicates/predicate.dart';
 import '../language_confidence/language_confidence.dart';
 import '../ocr_block/ocr_block.dart';
 import '../ocr_bounding_box/ocr_bounding_box.dart';
@@ -45,11 +44,11 @@ extension OcrPageSearch on OcrPage {
   OcrParagraph? findClosestParagraph(TargetWord targetWord) {
     OcrParagraph? closest;
     double minDistance = double.infinity;
-    final targetBox = targetWord.boundingBox;
+    final targetBoxScorer = targetWord.boundingBoxScorer;
 
     // Search all blocks, pruning early if possible
     for (final block in blocks) {
-      if (block.boundingBox.distanceToManhattan(targetBox) >= minDistance) {
+      if (targetBoxScorer.score(block.boundingBox) >= minDistance) {
         continue; // Skip this block if it's farther than the closest found paragraph
       }
 
@@ -60,7 +59,7 @@ extension OcrPageSearch on OcrPage {
           return paragraph;
         } else if ((targetWord.avoidPredicate != null &&
             !targetWord.avoidPredicate!.check(paragraphText))) {
-          double distance = paragraph.boundingBox.distanceToManhattan(targetBox);
+          double distance = targetBoxScorer.score(paragraph.boundingBox);
           if (distance < minDistance) {
             minDistance = distance;
             closest = paragraph;

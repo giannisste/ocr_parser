@@ -1,6 +1,6 @@
-import 'package:ocr_parser/src/google_vision_ocr_features/ocr_paragraph/ocr_paragraph.dart';
 
-import '../../mappers/mapper.dart';
+import '../../google_vision_ocr_features/ocr_paragraph/ocr_paragraph.dart';
+import '../../core/mappers/mapper.dart';
 import 'dei_document.dart';
 
 class DeiDocumentFromJsonMapper implements Mapper<Map<String, OcrParagraph?>, DeiDocument> {

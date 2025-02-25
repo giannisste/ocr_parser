@@ -1,5 +1,5 @@
-import '../../core_types/core_2d/point/point.dart';
-import '../../mappers/mapper.dart';
+import '../../core/core_types/core_2d/point/point.dart';
+import '../../core/mappers/mapper.dart';
 import 'ocr_bounding_box.dart';
 
 class OcrBoundingBoxMapper implements Mapper<Map<String, dynamic>, OcrBoundingBox> {

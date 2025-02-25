@@ -1,7 +1,7 @@
 import 'dart:math' show sqrt;
 
-import '../../core_types/core_2d/point/point.dart';
-import '../../core_types/core_2d/rectangle/rectangle.dart';
+import '../../core/core_types/core_2d/point/point.dart';
+import '../../core/core_types/core_2d/rectangle/rectangle.dart';
 
 class OcrBoundingBox {
   OcrBoundingBox({
@@ -24,18 +24,20 @@ class OcrBoundingBox {
   Point<double> get bottomRight => rectangle.bottomRight;
 
   // Get center of the bounding box
-  double get centerX => (rectangle.upperLeft.x + rectangle.bottomRight.x) / 2.0;
-  double get centerY => (rectangle.upperLeft.y + rectangle.bottomRight.y) / 2.0;
+  Point<double> get center => Point(
+    x: (rectangle.upperLeft.x + rectangle.bottomRight.x) / 2.0,
+    y: (rectangle.upperLeft.y + rectangle.bottomRight.y) / 2.0,
+  );
 
   double distanceTo(OcrBoundingBox other) {
-    final dx = centerX - other.centerX;
-    final dy = centerY - other.centerY;
+    final dx = center.x - other.center.x;
+    final dy = center.y - other.center.y;
     return sqrt(dx * dx + dy * dy);
   }
 
   double distanceToManhattan(OcrBoundingBox other) {
-    double dx = (centerX - other.centerX).abs();
-    double dy = (centerY - other.centerY).abs();
+    double dx = (center.x - other.center.x).abs();
+    double dy = (center.y - other.center.y).abs();
     return dx + dy;
   }
 
@@ -47,13 +49,25 @@ class OcrBoundingBox {
   }
 
   Point<double> distanceVector(OcrBoundingBox other) {
-    return Point(x: upperLeft.x - other.upperLeft.x, y: upperLeft.y - other.upperLeft.y);
+    return Point(
+      x: upperLeft.x - other.upperLeft.x,
+      y: upperLeft.y - other.upperLeft.y,
+    );
   }
 
   OcrBoundingBox translate(Point<double> offset) => OcrBoundingBox(
-    upperLeft: Point(x: rectangle.upperLeft.x + offset.x, y: rectangle.upperLeft.y + offset.y),
-    upperRight: Point(x: rectangle.upperRight.x + offset.x, y: rectangle.upperRight.y + offset.y),
-    bottomLeft: Point(x: rectangle.bottomLeft.x + offset.x, y: rectangle.bottomLeft.y + offset.y),
+    upperLeft: Point(
+      x: rectangle.upperLeft.x + offset.x,
+      y: rectangle.upperLeft.y + offset.y,
+    ),
+    upperRight: Point(
+      x: rectangle.upperRight.x + offset.x,
+      y: rectangle.upperRight.y + offset.y,
+    ),
+    bottomLeft: Point(
+      x: rectangle.bottomLeft.x + offset.x,
+      y: rectangle.bottomLeft.y + offset.y,
+    ),
     bottomRight: Point(
       x: rectangle.bottomRight.x + offset.x,
       y: rectangle.bottomRight.y + offset.y,

@@ -1,4 +1,4 @@
-import '../../mappers/mapper.dart';
+import '../../core/mappers/mapper.dart';
 import '../language_confidence/language_confidence.dart';
 import '../ocr_block/ocr_block.dart';
 import 'ocr_page.dart';
