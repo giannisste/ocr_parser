@@ -1,3 +1,5 @@
+import 'package:ocr_parser/src/google_vision_ocr_features/google_vision_ocr_data/google_vision_ocr_data.dart';
+
 import '../bounding_box_method_features/find_bounding_boxes_usecase.dart';
 import '../documents_features/cosmote/cosmote_document_from_json_mapper.dart';
 import '../documents_features/cosmote/get_cosmote_bounding_box_map_usecase.dart';
@@ -12,11 +14,11 @@ import '../documents_features/nova/get_nova_bounding_box_map_usecase.dart';
 import '../documents_features/nova/nova_document_from_json_mapper.dart';
 import 'ocr_usecase.dart';
 
-OcrUsecase provideOcrUsecase((double, double) pageSize) {
+OcrUsecase provideOcrUsecase(GoogleVisionOcrData ocrData) {
   return FindBoundingBoxesUsecase(
     findDocumentFormatUsecase: const FindDocumentFormatUsecase(),
     preprocessDocumentUsecase: PreprocessOcrUsecase(
-      getTargetBoxesUsecase: GetTargetBoxesUsecase(pageSize),
+      getTargetBoxesUsecase: GetTargetBoxesUsecase(ocrData),
     ),
     getBoundingBoxMapsUsecase: GetDocumentBoundingBoxMapUsecase(
       getDeiBoundingBoxMapUsecase: GetDeiBoundingBoxMapUsecase(),

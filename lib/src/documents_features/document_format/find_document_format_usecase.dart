@@ -1,3 +1,4 @@
+import 'package:ocr_parser/src/core/core_types/predicates/and_predicate.dart';
 import 'package:ocr_parser/src/core/core_types/predicates/substring_predicate.dart';
 
 import '../../core/core_types/usecases/usecase.dart';
@@ -18,7 +19,10 @@ class FindDocumentFormatUsecase
         for (final paragraph in block.paragraphs) {
           final paragraphText = paragraph.toParagraph().trim().toUpperCase();
           documentFormatResponse = paragraphText.foldDocumentFormat(
-            const SubstringPredicate(substring: 'DEI'),
+            const OrPredicate(
+              firstPredicate: SubstringPredicate(substring: 'DEI'),
+              secondPredicate: SubstringPredicate(substring: 'ΔΕΗ'),
+            ),
             const SubstringPredicate(substring: 'EYDAP'),
             const SubstringPredicate(substring: 'COSMOTE'),
             const SubstringPredicate(substring: 'NOVA'),

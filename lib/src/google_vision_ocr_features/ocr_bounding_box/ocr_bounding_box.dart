@@ -107,6 +107,19 @@ class OcrBoundingBox {
     ),
   );
 
+OcrBoundingBox expandBoundingBox(double width, double height) {
+  final dx = width / 2;
+  final dy = height / 2;
+
+  return OcrBoundingBox(
+    upperLeft: Point(x: upperLeft.x - dx, y: upperLeft.y - dy),
+    upperRight: Point(x: upperRight.x + dx, y: upperRight.y - dy),
+    bottomLeft: Point(x: bottomLeft.x - dx, y: bottomLeft.y + dy),
+    bottomRight: Point(x: bottomRight.x + dx, y: bottomRight.y + dy),
+  );
+}
+
+
   @override
   String toString() {
     return 'OcrBoundingBox(upperLeft: Point(x:${rectangle.upperLeft.x}, y:${rectangle.upperLeft.y}), upperRight: Point(x:${rectangle.upperRight.x}, y:${rectangle.upperRight.y}), bottomLeft: Point(x:${rectangle.bottomLeft.x}, y:${rectangle.bottomLeft.y}), bottomRight: Point(x:${rectangle.bottomRight.x}, y:${rectangle.bottomRight.y}))';

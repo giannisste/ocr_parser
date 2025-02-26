@@ -13,8 +13,8 @@ class OcrBoundingBoxMapper implements Mapper<Map<String, dynamic>, OcrBoundingBo
     return OcrBoundingBox(
       upperLeft: vertices[0],
       upperRight: vertices[1],
-      bottomLeft: vertices[2],
-      bottomRight: vertices[3],
+      bottomRight: vertices[2],
+      bottomLeft: vertices[3],
     );
   }
 }
